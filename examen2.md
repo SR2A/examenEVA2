@@ -65,7 +65,10 @@ Conceptos que deben ser citados:
 
 Se utilizarán las siguientes variables:
 
-$$D = Disponibilidad$$ $$T_t = Tiempo\ Total$$
+$$D = Disponibilidad$$
+
+$$T_t = Tiempo\ Total$$
+
 $$T_i = Tiempo\ de\ Interrupcción$$
 
 La `Disponibilidad`de un sistema en porcentaje vendrá dada por la
