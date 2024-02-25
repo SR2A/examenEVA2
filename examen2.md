@@ -1,0 +1,137 @@
+---
+title: "Ejercicios y problemas - 2ª Evaluación"
+author: "Joanh"
+date: "20/02/2024"
+output:
+  github_document:
+    toc: true
+    toc_depth: 3
+    preserve_yaml: true
+    keep_html: true
+---
+
+Ejercicios y problemas - 2ª Evaluación
+================
+Joanh
+20/02/2024
+
+- [Ejercicio 1](#ejercicio-1)
+  - [Explica de una manera sencilla el cifrado de Clave Pública
+    (`1 punto`)](#explica-de-una-manera-sencilla-el-cifrado-de-clave-pública-1-punto)
+- [Ejercicio 2](#ejercicio-2)
+  - [Define el concepto de Hash
+    (`1 punto`)](#define-el-concepto-de-hash-1-punto)
+- [Ejercicio 3](#ejercicio-3)
+  - [Plantea una manera de convertir en cuantitativa la valoración del
+    Riesgo (Probabilidad x Impacto) de una amenaza
+    (`1 punto`)](#plantea-una-manera-de-convertir-en-cuantitativa-la-valoración-del-riesgo-probabilidad-x-impacto-de-una-amenaza-1-punto)
+- [Problemas](#problemas)
+  - [A (`2 puntos`)](#a-2-puntos)
+  - [B (`1 punto`)](#b-1-punto)
+
+## Ejercicio 1
+
+### Explica de una manera sencilla el cifrado de Clave Pública (`1 punto`)
+
+Conceptos que deben ser citados:
+
+- Encriptación asimétrica (`0.25`)
+- Emparejamiento de claves pública y privada (`0.25`)
+- Mecanismo de comunicación, encriptación y desencriptación (`0.50`)
+
+## Ejercicio 2
+
+### Define el concepto de Hash (`1 punto`)
+
+- Incluir el concepto de función y/o algoritmo (`0.5`)
+- Citar uno (`0.25`) o más casos de uso (`0.25`)
+
+## Ejercicio 3
+
+### Plantea una manera de convertir en cuantitativa la valoración del Riesgo (Probabilidad x Impacto) de una amenaza (`1 punto`)
+
+- Mención a la `matriz de riesgo` (`0.5`)
+- Usar estadísticas reales para estimar probabilidades e impactos
+  (`0.5`)
+
+## Problemas
+
+### A (`2 puntos`)
+
+> Un centro internacional de cirugía robótica online que da cobertura
+> mundial planea proporcionar para 2028 (año bisiesto), una
+> `Alta Disponibilidad` de `6 nueves`. Calcular el Tiempo de
+> Interrupción máximo que correspondería.
+
+Se utilizarán las siguientes variables:
+
+$$D = Disponibilidad$$ $$T_t = Tiempo\ Total$$
+$$T_i = Tiempo\ de\ Interrupcción$$
+
+La `Disponibilidad`de un sistema en porcentaje vendrá dada por la
+siguiente relación:
+
+$$D = \cfrac{T_t - T_i}{T_t} \times 100$$
+
+Multiplicando por $T_t$ y dividiendo por $100$ llegamos a la relación:
+
+$$\cfrac{T_t \cdot D}{100} = {T_t - T_i}$$
+
+Estamos interesados en la variable $T_i$, es decir:
+
+$$T_i = T_t - \cfrac{T_t \cdot D}{100}$$
+
+Sacando $T_t$ como factor común, la relación se puede reescribir como:
+
+$$T_i = T_t (1 - \cfrac{D}{100})$$
+
+Donde conocemos que $T_t = 366 \ días$ y $D = 99.9999\%$. Sustituyendo
+estos valores obtenemos:
+
+$$T_i = 366 (1 - \cfrac{99.9999}{100}) = 0.000366\ días$$
+
+O en unidades más apropiadas
+
+$$T_i = 0.000366\ días = 0.000366\ días \times \cfrac{24\ horas}{día} \times \cfrac{3600\ s}{hora} = 31.6224\ s \approx 31.6\ s $$
+
+### B (`1 punto`)
+
+> En el contexto anterior, calcular la `Disponibilidad` resultante si se
+> permitiera un día de parada programado por mantenimiento.
+
+Asumiendo que el día de parada es programado y por tanto no contaría
+como interrupción del servicio, la disponibilidad se calcularía para
+`365 días`, permitiéndose el mismo tiempo de interrupcción. Tendríamos
+entonces:
+
+$$D = \cfrac{T_t - T_i}{T_t} \times 100\ \Rightarrow$$
+
+$$D = \cfrac{(365 \times\ 24\ \times\ 3600) - 31.6}{(365 \times\ 24\ \times\ 3600)} \times 100\ \Rightarrow$$
+
+$$D = 99.9999\%$$
+
+Parece que da lo mismo, pero los números son en realidad diferentes. Por
+ejemplo si haces la cuentas con Python:
+
+``` shell
+>>> 100*((366*24*3600)-31.6)/31622400
+99.99990007083586
+>>> 100*((365*24*3600)-31.6)/31536000 
+99.99989979705732
+```
+
+Es decir, no da lo mismo, da **`CASI`** lo mismo.
+
+------------------------------------------------------------------------
+
+Criterios de calificación de los problemas:
+
+**A**
+
+- Intento con conocimiento de la fórmula: `0.5 puntos`
+- Cálculo correcto: `1.5 puntos`
+
+**B**
+
+- Intento con conocimiento de la fórmula: `0.25 puntos`
+- Cálculo correcto: `0.75 puntos`
